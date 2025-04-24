@@ -44,7 +44,7 @@ extract_tools() {
     fi
 
     echo "[*] Copiando arquivo para $TMP_DIR..."
-    cp "$VMWARE_TOOLS_TAR" "$TMP_DIR"
+    sudo cp "$VMWARE_TOOLS_TAR" "$TMP_DIR"
 
     echo "[*] Extraindo conteúdo..."
     cd "$TMP_DIR"
