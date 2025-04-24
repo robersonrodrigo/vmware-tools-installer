@@ -18,11 +18,15 @@ tar -zxvf VMwareTools-*.tar.gz
 # Instalar
 echo "[*] Iniciando instalador..."
 cd vmware-tools-distrib
-sudo ./vmware-install.pl -d
+sudo ./vmware-install.pl
 
-# Limpeza
-echo "[*] Limpando arquivos temporários..."
-sudo umount /mnt/cdrom
-rm -rf /tmp/vmware-tools-distrib /tmp/VMwareTools-*.tar.gz
-
-echo "[✔] VMware Tools instalado com sucesso."
+# Confirmar antes de limpar
+read -p "[?] Deseja remover arquivos temporários e desmontar o CD-ROM? [s/N] " RESP
+if [[ "$RESP" =~ ^[sS]$ ]]; then
+    echo "[*] Limpando arquivos temporários..."
+    sudo umount /mnt/cdrom
+    rm -rf /tmp/vmware-tools-distrib /tmp/VMwareTools-*.tar.gz
+    echo "[✔] Limpeza concluída."
+else
+    echo "[*] Limpando abortada. Arquivos e CD-ROM permanecem montados."
+fi
